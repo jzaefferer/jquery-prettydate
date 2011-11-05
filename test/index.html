@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html id="html">
+<head>
+	<title>jQuery - Pretty date plugin testsuite</title>
+	<link rel="Stylesheet" media="screen" href="qunit/testsuite.css" />
+	<script type="text/javascript" src="../lib/jquery.js"></script>
+	<script type="text/javascript" src="qunit/testrunner.js"></script>
+	<script type="text/javascript" src="../jquery.prettydate.js"></script>
+	
+	<script type="text/javascript">
+		$.prettyDate.now = function() {
+			return new Date("2008/01/28 22:25:00");
+		};
+		test("standalone format", function() {
+			same($("#main a").map(function() {
+				return $.prettyDate.format(this.title) || "can't format";
+			}).get(), ["2 hours ago", "Yesterday", "2 days ago", "2 weeks ago", "can't format"])
+		});
+		test("plugin", function() {
+			same($("#main a").prettyDate().map(function() {
+				return $(this).text();
+			}).get(), ["2 hours ago", "Yesterday", "2 days ago", "2 weeks ago", "x"])
+		})
+		test("localized", function() {
+			var org = $.extend({}, $.prettyDate.messages);
+			$.prettyDate.messages.hours = $.prettyDate.template("text {0} text");
+			$("a:first").prettyDate();
+			same($("a:first").text(), "text 2 text");
+			$.prettyDate.messages = org;
+		})
+	</script>
+</head>
+<body>
+	<div id="main" style="display:none">
+		<a title="2008-01-28T20:24:17Z">x</a>
+		<a title="2008-01-27T22:24:17Z">x</a>
+		<a title="2008-01-26T22:24:17Z">x</a>
+		<a title="2008-01-14T22:24:17Z">x</a>
+		<a title="2007-12-15T22:24:17Z">x</a>
+	</div>
+</body>
+</html>
