@@ -2,12 +2,12 @@
 <html id="html">
 <head>
 	<title>jQuery - Pretty date plugin testsuite</title>
-	<link rel="Stylesheet" media="screen" href="qunit/testsuite.css" />
-	<script type="text/javascript" src="../lib/jquery.js"></script>
-	<script type="text/javascript" src="qunit/testrunner.js"></script>
-	<script type="text/javascript" src="../jquery.prettydate.js"></script>
+	<link rel="Stylesheet" media="screen" href="qunit/qunit.css" />
+	<script src="qunit/qunit.js"></script>
+	<script src="../lib/jquery.js"></script>
+	<script src="../jquery.prettydate.js"></script>
 
-	<script type="text/javascript">
+	<script>
 		$.prettyDate.now = function() {
 			return new Date("2008/01/28 22:25:00");
 		};
@@ -24,8 +24,8 @@
 		test("localized", function() {
 			var org = $.extend({}, $.prettyDate.messages);
 			$.prettyDate.messages.hours = $.prettyDate.template("text {0} text");
-			$("a:first").prettyDate();
-			same($("a:first").text(), "text 2 text");
+			$("#main a:first").prettyDate();
+			same($("#main a:first").text(), "text 2 text");
 			$.prettyDate.messages = org;
 		})
 		test("attribute", function() {
@@ -46,6 +46,11 @@
 	</script>
 </head>
 <body>
+	<h1 id="qunit-header">jquery-prettydate Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
 	<div id="qunit-fixture">
 		<div id="main">
 			<a title="2008-01-28T20:24:17Z">x</a>
