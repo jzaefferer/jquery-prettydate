@@ -1,8 +1,8 @@
 /*
  * jQuery pretty date plug-in 1.0.0
- * 
+ *
  * http://bassistance.de/jquery-plugins/jquery-plugin-prettydate/
- * 
+ *
  * Based on John Resig's prettyDate http://ejohn.org/blog/javascript-pretty-date
  *
  * Copyright (c) 2009 Jörn Zaefferer
@@ -17,9 +17,9 @@
 (function() {
 
 $.prettyDate = {
-	
+
 	template: function(source, params) {
-		if ( arguments.length == 1 ) 
+		if ( arguments.length == 1 )
 			return function() {
 				var args = $.makeArray(arguments);
 				args.unshift(source);
@@ -36,21 +36,37 @@ $.prettyDate = {
 		});
 		return source;
 	},
-	
+
 	now: function() {
 		return new Date();
 	},
-	
+
+	fromUTC: function (utcDate, isUTC) {
+		if (!isUTC) {
+			return utcDate;
+		} else {
+			var date = new Date();
+			date.setUTCDate(utcDate.getDate());
+			date.setUTCHours(utcDate.getHours());
+			date.setUTCMonth(utcDate.getMonth());
+			date.setUTCFullYear(utcDate.getFullYear());
+			date.setUTCMinutes(utcDate.getMinutes());
+			date.setUTCSeconds(utcDate.getSeconds());
+			date.setUTCMilliseconds(utcDate.getMilliseconds());
+			return date;
+		}
+	},
+
 	// Takes an ISO time and returns a string representing how
 	// long ago the date represents.
-	format: function(time) {
-		var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
+	format: function(time, isUTC) {
+		var date = $.prettyDate.fromUTC(new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")), isUTC),
 			diff = ($.prettyDate.now().getTime() - date.getTime()) / 1000,
 			day_diff = Math.floor(diff / 86400);
-			
+
 		if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
 			return;
-		
+
 		var messages = $.prettyDate.messages;
 		return day_diff == 0 && (
 				diff < 60 && messages.now ||
@@ -62,7 +78,7 @@ $.prettyDate = {
 			day_diff < 7 && messages.days(day_diff) ||
 			day_diff < 31 && messages.weeks(Math.ceil( day_diff / 7 ));
 	}
-	
+
 };
 
 $.prettyDate.messages = {
@@ -75,18 +91,20 @@ $.prettyDate.messages = {
 	days: $.prettyDate.template("{0} days ago"),
 	weeks: $.prettyDate.template("{0} weeks ago")
 };
-	
+
 $.fn.prettyDate = function(options) {
 	options = $.extend({
 		value: function() {
-			return $(this).attr("title");
+			return $(this).attr(options.attribute);
 		},
-		interval: 10000
+		interval: 10000,
+		attribute: "title",
+		isUTC: false
 	}, options);
 	var elements = this;
 	function format() {
 		elements.each(function() {
-			var date = $.prettyDate.format(options.value.apply(this));
+			var date = $.prettyDate.format(options.value.apply(this), options.isUTC);
 			if ( date && $(this).text() != date )
 				$(this).text( date );
 		});
