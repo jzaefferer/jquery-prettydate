@@ -14,7 +14,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-(function() {
+(function($) {
 
 $.prettyDate = {
 
@@ -115,4 +115,4 @@ $.fn.prettyDate = function(options) {
 	return this;
 };
 
-})();
+})(jQuery);
