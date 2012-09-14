@@ -1,74 +1,35 @@
 <!DOCTYPE html>
-<html id="html">
+<html lang="en">
 <head>
-	<title>jQuery - Pretty date plugin testsuite</title>
-	<link rel="Stylesheet" media="screen" href="qunit/qunit.css" />
-	<script src="qunit/qunit.js"></script>
-	<script src="../lib/jquery.js"></script>
+	<title>jQuery prettyDate Test</title>
+	<link rel="stylesheet" href="../libs/jquery.qunit/qunit/qunit.css">
+	<script src="../libs/jquery.qunit/qunit/qunit.js"></script>
+	<script src="../libs/jquery.js"></script>
 	<script src="../jquery.prettydate.js"></script>
-
-	<script>
-		$.prettyDate.now = function() {
-			return new Date("2008/01/28 22:25:00");
-		};
-		test("standalone format", function() {
-			same($("#main a").map(function() {
-				return $.prettyDate.format(this.title) || "can't format";
-			}).get(), ["2 hours ago", "Yesterday", "2 days ago", "2 weeks ago", "can't format"])
-		});
-		test("plugin", function() {
-			same($("#main a").prettyDate().map(function() {
-				return $(this).text();
-			}).get(), ["2 hours ago", "Yesterday", "2 days ago", "2 weeks ago", "x"])
-		})
-		test("localized", function() {
-			var org = $.extend({}, $.prettyDate.messages);
-			$.prettyDate.messages.hours = $.prettyDate.template("text {0} text");
-			$("#main a:first").prettyDate();
-			same($("#main a:first").text(), "text 2 text");
-			$.prettyDate.messages = org;
-		})
-		test("attribute", function() {
-			same($("#alternate a").prettyDate({attribute: "date"}).map(function() {
-				return $(this).text();
-			}).get(), ["2 hours ago"])
-		})
-		test("UTC", function() {
-			$.prettyDate.now = function() {
-				var date = new Date("2008/01/28 22:25:00");
-				date = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
-				return date;
-			};
-			same($("#utc a").prettyDate({isUTC: true}).map(function() {
-				return $(this).text();
-			}).get(), ["2 hours ago", "Yesterday", "2 days ago", "2 weeks ago", "x"])
-		})
-	</script>
 </head>
 <body>
-	<h1 id="qunit-header">jquery-prettydate Test Suite</h1>
-	<h2 id="qunit-banner"></h2>
-	<div id="qunit-testrunner-toolbar"></div>
-	<h2 id="qunit-userAgent"></h2>
-	<ol id="qunit-tests"></ol>
+	<div id="qunit"></div>
 	<div id="qunit-fixture">
+		<!-- Now: 2008-01-28 22:25:00.000 UTC -->
 		<div id="main">
-			<a title="2008-01-28T20:24:17Z">x</a>
-			<a title="2008-01-27T22:24:17Z">x</a>
-			<a title="2008-01-26T22:24:17Z">x</a>
-			<a title="2008-01-14T22:24:17Z">x</a>
-			<a title="2007-12-15T22:24:17Z">x</a>
+			<a title="2012-01-01T00:00:00Z">fallback</a>
+			<a title="2008-01-28T22:24:30Z">fallback</a>
+			<a title="2008-01-28T22:23:05Z">fallback</a>
+			<a title="2008-01-28T22:20:05Z">fallback</a>
+			<a title="2008-01-28T20:24:17Z">fallback</a>
+			<a title="2008-01-27T08:00:00Z">fallback</a>
+			<a title="2008-01-26T08:00:00Z">fallback</a>
+			<a title="2008-01-21T08:00:00Z">fallback</a>
+			<a title="2008-01-14T08:00:00Z">fallback</a>
+			<a title="2007-12-28T08:00:00Z">fallback</a>
+			<a title="2007-12-15T08:00:00Z">fallback</a>
+			<a title="2007-01-14T08:00:00Z">fallback</a>
+			<a title="2006-03-07T08:00:00Z">fallback</a>
 		</div>
 		<div id="alternate">
-			<a date="2008-01-28T20:24:17Z">x</a>
-		</div>
-		<div id="utc">
-			<a title="2008-01-28T20:24:17Z">x</a>
-			<a title="2008-01-27T22:24:17Z">x</a>
-			<a title="2008-01-26T22:24:17Z">x</a>
-			<a title="2008-01-14T22:24:17Z">x</a>
-			<a title="2007-12-15T22:24:17Z">x</a>
+			<a data-mytimestamp="2008-01-28T20:24:17Z">fallback</a>
 		</div>
 	</div>
+	<script src="jquery.prettydate.test.js"></script>
 </body>
 </html>

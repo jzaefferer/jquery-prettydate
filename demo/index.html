@@ -1,87 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>jQuery pretty date plugin demo</title>
-	<script src="../lib/jquery.js"></script>
+	<meta charset="utf-8">
+	<title>jQuery prettyDate Demo</title>
+	<script src="../libs/jquery.js"></script>
 	<script src="../jquery.prettydate.js"></script>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		background: #eee;
+		font: 14px/21px sans-serif;
+		color: #333;
+		position: relative;
+	}
+	h1 {
+		text-align: center;
+		padding: 1em 0;
+	}
+	a {
+		text-decoration: none;
+		color: #0645ad;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+	fieldset, p {
+		margin: 0.5em 0;
+	}
+	.fork {
+		position: fixed;
+		top: 0; right: 0;
+		background: url(https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67) no-repeat 100% 0;
+		width: 150px;
+		height: 150px;
+		float: right;
+	}
+	.entries {
+		margin: 0 auto 3em;
+		padding: 0.5em 0.5em 0;
+		background: #fff;
+		width: 500px;
+		overflow: hidden;
+	}
+	fieldset, .entry {
+		background: #f2f2f2;
+		border: 1px solid #ddd;
+		padding: 0.25em 0.5em;
+		margin-bottom: 0.5em;
+		list-style: none;
+		overflow: hidden;
+	}
+	.entry .extra {
+		float: right;
+	}
+	</style>
 	<script>
-		$(function() {
-			// set a fixed date for the demo to be independent of the current date
-			$.prettyDate.now = function() {
-				return new Date("2008/01/28 22:25:00");
+		jQuery(function ($) {
+			// Generate demo's with javascript to keep HTML less repetative
+			var zulus, $langs,
+				msgsEn = $.extend({}, $.prettyDate.messages),
+				$langMenu = $('<select>'),
+				$entries = $('.entries ul').empty();
+
+
+			function doPretty() {
+				$('.time').prettyDate({
+					// No need to update as the time is fixed
+					interval: false
+				});
 			}
-			$("a").prettyDate();
+
+			zulus = [
+				'2012-01-01T00:00:00Z',
+				'2008-01-28T22:24:30Z',
+				'2008-01-28T22:23:05Z',
+				'2008-01-28T22:20:05Z',
+				'2008-01-28T20:24:17Z',
+				'2008-01-27T08:00:00Z',
+				'2008-01-26T08:00:00Z',
+				'2008-01-21T08:00:00Z',
+				'2008-01-14T08:00:00Z',
+				'2007-12-28T08:00:00Z',
+				'2007-12-15T08:00:00Z',
+				'2007-01-14T08:00:00Z',
+				'2006-03-07T08:00:00Z'
+			];
+			$.each(zulus, function (i, zulu) {
+				$entries.append(
+					$('<li>', {
+						addClass: 'entry',
+						html: '<a href="#' + zulu + '">Blah blah blah</a>' +
+							' <small class="extra"><span class="time" title="' +
+							zulu + '">' + new Date($.prettyDate.parse(zulu)).toDateString() + '</span>' +
+							' &nbsp;&bull;&nbsp; ' + '<a class="author" href="#/author/john/">John Resig</a></small>'
+					})
+				);
+
+			});
+
+
+			$langs = $.map([
+				'cn',
+				'da',
+				'de',
+				'es',
+				'fr',
+				'id',
+				'lv',
+				'nl',
+				'pl',
+				'pt-BR',
+				'sv',
+				'th',
+				'tr'
+			], function (lang) {
+				return $('<option>').text(lang).prop('value', lang);
+			});
+			$langs.unshift(
+				$('<option>').text('en').prop({
+					value: '',
+					selected: true
+				})
+			);
+
+			$langMenu
+				.prop('id', 'lang-menu')
+				.append($langs)
+				.on('change', function () {
+					if (this.value !== '') {
+						// $.getScript, but with cache
+						$.ajax({
+							url: '../i18n/jquery.prettydate-' +  this.value + '.js',
+							dateType: 'script',
+							cache: true
+						}).done(doPretty);
+					} else {
+						$.prettyDate.messages = msgsEn;
+						doPretty();
+					}
+				})
+				.wrap('<fieldset>')
+					.parent()
+					.prependTo('.entries');
+
+			// Fixed date for the demo to be independent of the current date
+			// (prevents everything from becoming "5 years ago...")
+			$.prettyDate.now = function () {
+				return new Date(1201559100000);
+			}
+
+			$('<p>').text('Local time: ' + $.prettyDate.now()).prependTo('.entries');
+
+			doPretty();
 		});
 	</script>
 </head>
 <body>
-	
+	<a class="fork" href="https://github.com/jzaefferer/jquery-prettydate" title="Fork jquery.prettydate on GitHub!"></a>
+	<h1><a href="./">jQuery prettyDate Demo</a></h1>
+	<div class="entries">
+		<ul><em>Loading...</em></ul>
+		<hr>
+		<p><a href="https://github.com/jzaefferer/jquery-prettydate">Source code: github.com/jzaefferer/jquery-prettydate</a></p>
+	</div>
 </body>
 </html>
-<ul>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-28T20:24:17Z"><span>January 28th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-27T22:24:17Z"><span>January 27th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-26T22:24:17Z"><span>January 26th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-25T22:24:17Z"><span>January 25th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-24T22:24:17Z"><span>January 24th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-14T22:24:17Z"><span>January 14th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2008-01-04T22:24:17Z"><span>January 4th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-<li class="entry" id="post57">
-	<p>blah blah blah...</p>
-	<small class="extra">
-		Posted <span class="time"><a href="/2008/01/blah/57/" title="2007-12-15T22:24:17Z"><span>December 15th, 2008</span></a></span>
-		by <span class="author"><a href="/john/">John Resig</a></span>
-
-	</small>
-</li>
-</ul>

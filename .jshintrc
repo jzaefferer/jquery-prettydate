@@ -1,0 +1,28 @@
+{
+	"predef": [
+		"QUnit"
+	],
+
+	"camelcase": true,
+	"curly": true,
+	"eqeqeq": true,
+	"immed": true,
+	"latedef": true,
+	"newcap": true,
+	"noarg": true,
+	"noempty": true,
+	"nonew": true,
+	"plusplus": true,
+	"quotmark": "single",
+	"undef": true,
+	"unused": true,
+	"strict": false,
+	"trailing": true,
+
+	"browser": true,
+	"jquery": true,
+
+	"nomen": true,
+	"onevar": true,
+	"white": true
+}
