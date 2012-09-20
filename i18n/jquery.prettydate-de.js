@@ -7,5 +7,10 @@ $.extend($.prettyDate.messages, {
     hours: $.prettyDate.template('vor {0} Stunden'),
     yesterday: 'gestern',
     days: $.prettyDate.template('vor {0} Tagen'),
-    weeks: $.prettyDate.template('vor {0} Wochen')
+    week: 'vor einer Woche',
+    weeks: $.prettyDate.template('vor {0} Wochen'),
+    month: 'vor einem Monat',
+    months: $.prettyDate.template('vor {0} Monaten'),
+    year: 'vor einem Jahr',
+    years: $.prettyDate.template('vor {0} Jahren')
 });
