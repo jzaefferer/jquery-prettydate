@@ -1,9 +1,9 @@
 /*
- * jQuery prettyDate v1.1.0pre
+ * jQuery prettyDate v1.1.0
  *
- * @author John Resig (ejohn.org), 2008-2011
- * @author Jörn Zaefferer, 2009
- * @author Timo Tijhof, 2012
+ * @author John Resig (ejohn.org)
+ * @author Jörn Zaefferer
+ * @author Timo Tijhof
  *
  * Based on http://ejohn.org/blog/javascript-pretty-date
  * Documentation: http://bassistance.de/jquery-plugins/jquery-plugin-prettydate/
