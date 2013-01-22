@@ -1,0 +1,29 @@
+{
+	"name": "prettydate",
+	"title": "jQuery Prettydate",
+	"description": "Form validation made easy",
+	"keywords": [
+		"dates",
+		"prettydate",
+		"relativetime"
+	],
+	"version": "1.1.0",
+	"author": {
+		"name": "Jörn Zaefferer",
+		"email": "joern.zaefferer@gmail.com",
+		"url": "http://bassistance.de"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/MIT"
+		}
+	],
+	"bugs": "https://github.com/jzaefferer/jquery-prettydate/issues",
+	"homepage": "https://github.com/jzaefferer/jquery-prettydate",
+	"docs": "http://bassistance.de/jquery-plugins/jquery-plugin-prettydate/",
+	"download": "http://bassistance.de/jquery-plugins/jquery-plugin-prettydate/",
+	"dependencies": {
+		"jquery": ">=1.8"
+	}
+}
