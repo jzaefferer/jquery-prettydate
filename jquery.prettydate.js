@@ -1,5 +1,5 @@
 /*
- * jQuery prettyDate v1.1.1
+ * jQuery prettyDate v1.2.0pre
  *
  * @author John Resig (ejohn.org)
  * @author Jörn Zaefferer
