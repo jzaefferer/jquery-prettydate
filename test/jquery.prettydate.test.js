@@ -20,7 +20,7 @@
 	};
 	var $main = $('#main a'),
 		$alt = $('#alternate a');
-		
+
 
 	QUnit.test('Plain', 2, function (assert) {
 		var expected = [

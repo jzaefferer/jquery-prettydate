@@ -1,0 +1,39 @@
+{
+  "name": "prettydate",
+  "title": "jQuery Prettydate",
+  "description": "Format relative dates as 'six minutes ago' and the like.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jzaefferer/jquery-prettydate",
+  "author": {
+    "name": "Jörn Zaefferer",
+    "email": "joern.zaefferer@gmail.com",
+    "url": "http://bassistance.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jzaefferer/jquery-prettydate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jzaefferer/jquery-prettydate/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "scripts": {
+    "test": "grunt jshint qunit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-qunit": "~0.2.0",
+    "grunt-contrib-jshint": "~0.2.0"
+  },
+  "keywords": [
+    "dates",
+    "prettydate",
+    "relativetime"
+  ]
+}

@@ -1,8 +1,4 @@
 {
-	"predef": [
-		"QUnit"
-	],
-
 	"camelcase": true,
 	"curly": true,
 	"eqeqeq": true,
@@ -23,6 +19,5 @@
 	"jquery": true,
 
 	"nomen": true,
-	"onevar": true,
-	"white": true
+	"onevar": true
 }
