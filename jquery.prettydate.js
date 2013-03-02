@@ -150,6 +150,7 @@
 					diff < 7200 && messages.hour ||
 					diff < 86400 && messages.hours(Math.floor(diff / 3600))) ||
 					dayDiff === 1 && messages.yesterday ||
+					dayDiff === 2 && (messages.dayBeforeYesterday || messages.days(dayDiff)) ||
 					dayDiff < 7 && messages.days(dayDiff) ||
 					dayDiff < 8 && messages.week ||
 					dayDiff < 14 && messages.days(dayDiff) ||
@@ -169,6 +170,7 @@
 		hour: '1 hour ago',
 		hours: $.prettyDate.template('{0} hours ago'),
 		yesterday: 'Yesterday',
+		dayBeforeYesterday: 'Two days ago',
 		days: $.prettyDate.template('{0} days ago'),
 		week: '1 week ago',
 		weeks: $.prettyDate.template('{0} weeks ago'),
