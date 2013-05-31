@@ -6,6 +6,7 @@ $.extend($.prettyDate.messages, {
 	hour: 'hace una hora',
 	hours: $.prettyDate.template('hace {0} horas'),
 	yesterday: 'ayer',
+	dayBeforeYesterday: 'anteayer',
 	days: $.prettyDate.template('hace {0} días'),
 	week: 'hace una semana',
 	weeks: $.prettyDate.template('hace {0} semanas'),

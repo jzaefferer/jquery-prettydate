@@ -27,9 +27,9 @@ $.prettyDate.messages = (function() {
 		dayBeforeYesterday: 'Позавчора',
 		days: $.prettyDate.template(new FuncSource('{0} дні тому', '{0} днів тому')),
 		week: '1 тиждень тому',
-		weeks: $.prettyDate.template(new FuncSource('{0} тижня тому', '{0} тижнів тому')),
+		weeks: $.prettyDate.template(new FuncSource('{0} тижні тому', '{0} тижнів тому')),
 		month: '1 місяць тому',
-		months: $.prettyDate.template(new FuncSource('{0} місяця тому', '{0} місяців тому')),
+		months: $.prettyDate.template(new FuncSource('{0} місяці тому', '{0} місяців тому')),
 		year: '1 рік тому',
 		years: $.prettyDate.template(new FuncSource('{0} роки тому', '{0} років тому'))
 	};
