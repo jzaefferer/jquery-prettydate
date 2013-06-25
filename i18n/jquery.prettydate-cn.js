@@ -1,4 +1,4 @@
-/* Chinse */
+/* Chinese */
 $.extend($.prettyDate.messages, {
 	now: '刚刚',
 	minute: '1分钟前',
