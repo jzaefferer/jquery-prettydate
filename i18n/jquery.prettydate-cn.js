@@ -7,5 +7,6 @@ $.extend($.prettyDate.messages, {
 	hours: $.prettyDate.template('{0}小时前'),
 	yesterday: '昨天',
 	days: $.prettyDate.template('{0}天前'),
+	week: '1星期前',
 	weeks: $.prettyDate.template('{0}星期前')
 });
