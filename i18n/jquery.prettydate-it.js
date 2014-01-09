@@ -1,6 +1,6 @@
 /* Italian */
 $.extend($.prettyDate.messages, {
-  now: 'adesso',
+	now: 'adesso',
 	minute: '1 minuto fa',
 	minutes: $.prettyDate.template('{0} minuti fa'),
 	hour: '1 ora fa',
