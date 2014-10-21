@@ -1,14 +1,14 @@
 /* Italian */
 $.extend($.prettyDate.messages, {
 	now: 'adesso',
-	minute: '1 minuto fa',
+	minute: 'un minuto fa',
 	minutes: $.prettyDate.template('{0} minuti fa'),
-	hour: '1 ora fa',
+	hour: 'un\'ora fa',
 	hours: $.prettyDate.template('{0} ore fa'),
 	yesterday: 'ieri',
 	dayBeforeYesterday: 'l\'altro ieri',
 	days: $.prettyDate.template('{0} giorni fa'),
-	week: '1 settimana fa',
+	week: 'una settimana fa',
 	weeks: $.prettyDate.template('{0} settimane fa'),
 	month: 'un mese fa',
 	months: $.prettyDate.template('{0} mesi fa'),
