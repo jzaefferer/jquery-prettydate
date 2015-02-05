@@ -1,6 +1,6 @@
 /* Hebrew */
 $.extend($.prettyDate.messages, {
-  now: 'ממש הרגע',
+	now: 'ממש הרגע',
 	minute: 'לפני דקה',
 	minutes: $.prettyDate.template('לפני {0} דקות'),
 	hour: 'לפני שעה',
