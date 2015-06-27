@@ -10,7 +10,7 @@ $.extend($.prettyDate.messages, {
 	days: $.prettyDate.template('hace {0} días'),
 	week: 'hace una semana',
 	weeks: $.prettyDate.template('hace {0} semanas'),
-	month: 'hace un més',
+	month: 'hace un mes',
 	months: $.prettyDate.template('hace {0} meses'),
 	year: 'hace un año',
 	years: $.prettyDate.template('hace {0} años')
